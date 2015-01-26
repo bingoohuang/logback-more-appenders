@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
     <appender name="SIFT" class="com.github.bingoohuang.logback.more.appenders.MultiKeysSiftingAppender">
-        <!-- in the absence of the class attribute, it is assumed that the
-             desired discriminator type is
-             ch.qos.logback.classic.sift.MDCBasedDiscriminator -->
         <discriminator class="com.github.bingoohuang.logback.more.appenders.MultiKeysMDCBasedDiscriminator">
             <key>userId,userType</key>
             <defaultValue>unknown</defaultValue>
