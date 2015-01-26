@@ -1,7 +1,7 @@
 # logback-more-appenders
 more appenders for logback
 
-## MultiKeysMDCBasedDiscriminator
+## MultiKeysSiftingAppender
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
