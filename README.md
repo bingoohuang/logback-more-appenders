@@ -29,7 +29,7 @@ more appenders for logback
 
 ```
 
-## MaskPatternLayout for some sensitive info like credit card number mask.
+## MaskPatternLayout for mask credit card number.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -38,15 +38,14 @@ more appenders for logback
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
             <layout class="com.github.bingoohuang.logback.more.layout.MaskPatternLayout">
                 <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - Console1: %m%n</pattern>
-                <patterns>(\d{6})\d{6}(\d{3,5}[xX]?) (\d)\d{3}(\d)</patterns>
+                <regexes><![CDATA[(\d{6})\d{6}(\d{3,5}[xX]?) (\d)\d{3}(\d)]]></regexes>
                 <masks>$1++++++$2 $1***$2</masks>
             </layout>
         </encoder>
     </appender>
     <appender name="Console2" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - Console2: %replace(%m){'(\d{6})\d{6}(\d{3,5}[xX]?)', '$1++++++$2'}%n
-            </pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - Console2: %replace(%m){'(\d{6})\d{6}(\d{3,5}[xX]?)', '$1++++++$2'}%n</pattern>
         </encoder>
     </appender>
 
@@ -56,4 +55,5 @@ more appenders for logback
     </root>
 
 </configuration>
+
 ```

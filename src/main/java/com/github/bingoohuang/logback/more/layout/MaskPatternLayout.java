@@ -10,8 +10,8 @@ public class MaskPatternLayout extends PatternLayout {
     @Override
     public String doLayout(ILoggingEvent event) {
         String message = super.doLayout(event);
-        for (int i = 0; i < patterns.length; ++i) {
-            Matcher matcher = patterns[i].matcher(message);
+        for (int i = 0; i < regexes.length; ++i) {
+            Matcher matcher = regexes[i].matcher(message);
 
             if (matcher.find()) {
                 message = matcher.replaceAll(i < masks.length ? masks[i] : defaultMask);
@@ -22,7 +22,7 @@ public class MaskPatternLayout extends PatternLayout {
         return message;
     }
 
-    private Pattern[] patterns;
+    private Pattern[] regexes;
     private String[] masks;
     private String separate = " ";
     private String defaultMask = "*";
@@ -57,13 +57,13 @@ public class MaskPatternLayout extends PatternLayout {
     /**
      * 以分隔符进行分割的模式列表。
      *
-     * @param patterns 模式列表
+     * @param regexes 正则表达式模式列表
      */
-    public void setPatterns(String patterns) {
-        String[] subPatterns = patterns.split(separate);
-        this.patterns = new Pattern[subPatterns.length];
+    public void setRegexes(String regexes) {
+        String[] subPatterns = regexes.split(separate);
+        this.regexes = new Pattern[subPatterns.length];
         for (int i = 0; i < subPatterns.length; ++i)
-            this.patterns[i] = Pattern.compile(subPatterns[i]);
+            this.regexes[i] = Pattern.compile(subPatterns[i]);
     }
 
     /**
