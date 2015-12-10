@@ -5,6 +5,6 @@ import com.github.bingoohuang.logback.more.utils.WeblogicEnvUtils;
 
 public class WeblogicRollingFileAppender extends RollingFileAppender {
     static {
-        System.setProperty("wl-port", WeblogicEnvUtils.getListenPort());
+        System.setProperty("wlport", WeblogicEnvUtils.getListenPort());
     }
 }
