@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="BLACKCAT" class="com.github.bingoohuang.logback.more.appenders.BlackcatAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}:%L - %m</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="BLACKCAT"/>
+    </root>
+</configuration>
+

@@ -4,7 +4,7 @@
 
     <groupId>com.github.bingoohuang</groupId>
     <artifactId>logback-more-appenders</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>more appenders for logback</name>
@@ -41,6 +41,12 @@
             <artifactId>lombok</artifactId>
             <version>1.16.14</version>
             <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.github.bingoohuang</groupId>
+            <artifactId>blackcat-instrument</artifactId>
+            <version>0.0.10</version>
             <optional>true</optional>
         </dependency>
         <dependency>
