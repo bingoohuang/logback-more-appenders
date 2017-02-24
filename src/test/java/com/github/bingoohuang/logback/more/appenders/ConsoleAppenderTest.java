@@ -1,15 +1,14 @@
 package com.github.bingoohuang.logback.more.appenders;
 
 import com.github.bingoohuang.logback.more.utils.ConfigurationUtils;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
+@Slf4j
 public class ConsoleAppenderTest {
-    Logger log = LoggerFactory.getLogger(ConsoleAppenderTest.class);
-
     @BeforeClass
     public static void beforeClass() {
         ConfigurationUtils.config("logback-console-appender.xml");
@@ -32,8 +31,8 @@ public class ConsoleAppenderTest {
         log.info("Exiting application.");
     }
 
-    @Test
-    public void testThreads() throws InterruptedException {
+    @Test @SneakyThrows
+    public void testThreads() {
         Thread thread1 = new Thread() {
             @Override
             public void run() {

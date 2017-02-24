@@ -2,6 +2,7 @@ package com.github.bingoohuang.logback.more.layout;
 
 import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;
+import lombok.Setter;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,11 +13,10 @@ public class MaskPatternLayout extends PatternLayout {
         String message = super.doLayout(event);
         for (int i = 0; i < regexes.length; ++i) {
             Matcher matcher = regexes[i].matcher(message);
+            if (!matcher.find()) continue;
 
-            if (matcher.find()) {
-                message = matcher.replaceAll(i < masks.length ? masks[i] : defaultMask);
-                if (matchType == MatchType.first) break;
-            }
+            message = matcher.replaceAll(i < masks.length ? masks[i] : defaultMask);
+            if (matchType == MatchType.first) break;
         }
 
         return message;
@@ -24,17 +24,10 @@ public class MaskPatternLayout extends PatternLayout {
 
     private Pattern[] regexes;
     private String[] masks;
-    private String separate = " ";
-    private String defaultMask = "*";
-    private MatchType matchType = MatchType.first;
+    @Setter private String separate = " "; // 多个模式之间的正则分隔符。
+    @Setter private String defaultMask = "*"; //  默认掩码
+    private MatchType matchType = MatchType.first; // 匹配类型。
 
-    /**
-     * 设置默认掩码
-     * @param defaultMask 默认掩码
-     */
-    public void setDefaultMask(String defaultMask) {
-        this.defaultMask = defaultMask;
-    }
 
     /**
      * 设置匹配类型。
@@ -43,15 +36,6 @@ public class MaskPatternLayout extends PatternLayout {
      */
     public void setMatchType(String matchType) {
         this.matchType = MatchType.valueOf(matchType);
-    }
-
-    /**
-     * 多个模式之间的正则分隔符。
-     *
-     * @param separate 正则分隔符
-     */
-    public void setSeparate(String separate) {
-        this.separate = separate;
     }
 
     /**
@@ -81,7 +65,7 @@ public class MaskPatternLayout extends PatternLayout {
     /**
      * 掩码类型。
      */
-    public static enum MatchType {
+    public enum MatchType {
         /**
          * 仅对第一个匹配进行全部替换。
          */

@@ -1,10 +1,9 @@
 package ch.qos.logback.classic.sift;
 
-import java.util.Map;
-
+import lombok.val;
 import org.slf4j.MDC;
 
-import ch.qos.logback.core.joran.spi.InterpretationContext;
+import java.util.Map;
 
 public class MultiKeysSiftingJoranConfigurator extends SiftingJoranConfigurator {
     public MultiKeysSiftingJoranConfigurator(String key, String value, Map<String, String> parentPropertyMap) {
@@ -18,8 +17,8 @@ public class MultiKeysSiftingJoranConfigurator extends SiftingJoranConfigurator 
         Map<String, String> mdcPropertyMap = MDC.getMDCAdapter().getCopyOfContextMap();
         if (mdcPropertyMap == null) return;
 
-        InterpretationContext interpretationContext = interpreter.getInterpretationContext();
-        for (Map.Entry<String, String> entry : mdcPropertyMap.entrySet())
+        val interpretationContext = interpreter.getInterpretationContext();
+        for (val entry : mdcPropertyMap.entrySet())
             interpretationContext.addSubstitutionProperty(entry.getKey(), entry.getValue());
     }
 

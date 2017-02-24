@@ -1,39 +1,31 @@
 package com.github.bingoohuang.logback.more.appenders;
 
-import java.util.Map;
-
 import ch.qos.logback.classic.sift.MDCBasedDiscriminator;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import com.google.common.base.Splitter;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.val;
 import org.apache.commons.lang3.StringUtils;
 
-import ch.qos.logback.classic.spi.ILoggingEvent;
-
-import com.google.common.base.Splitter;
-
 public class MultiKeysMDCBasedDiscriminator extends MDCBasedDiscriminator {
-    private String splitter = ",";
+    @Getter @Setter private String splitter = ",";
 
     @Override
     public String getDiscriminatingValue(ILoggingEvent event) {
-        Map<String, String> mdcMap = event.getMDCPropertyMap();
+        val splitter = Splitter.on(getSplitter()).omitEmptyStrings().trimResults();
+        val mdcMap = event.getMDCPropertyMap();
         if (mdcMap == null) return getDefaultValue();
 
-        Iterable<String> keys = Splitter.on(getSplitter()).omitEmptyStrings().trimResults().split(getKey());
-        StringBuilder values = new StringBuilder();
+        val keys = splitter.split(getKey());
+        val values = new StringBuilder();
         for (String key : keys) {
             String value = mdcMap.get(key);
-            values.append(value == null ? getDefaultValue() : value).append(getSplitter());
+            String str = value == null ? getDefaultValue() : value;
+            values.append(str).append(getSplitter());
         }
 
         return StringUtils.removeEnd(values.toString(), getSplitter());
 
     }
-
-    public String getSplitter() {
-        return splitter;
-    }
-
-    public void setSplitter(String splitter) {
-        this.splitter = splitter;
-    }
-
 }
