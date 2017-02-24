@@ -1,6 +1,6 @@
 package com.github.bingoohuang.logback.more.appenders;
 
-import com.github.bingoohuang.logback.more.utils.ConfigurationUtils;
+import com.github.bingoohuang.logback.more.utils.LogbackConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import org.slf4j.MDC;
 public class MultiKeysSiftAppenderTest {
     @BeforeClass
     public static void beforeClass() {
-        ConfigurationUtils.config("logback-multikeys-sift-appender.xml");
+        LogbackConfig.configFile("logback-multikeys-sift-appender.xml");
     }
 
     @Test

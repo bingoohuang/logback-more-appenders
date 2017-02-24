@@ -1,6 +1,6 @@
 package com.github.bingoohuang.logback.more.appenders;
 
-import com.github.bingoohuang.logback.more.utils.ConfigurationUtils;
+import com.github.bingoohuang.logback.more.utils.LogbackConfig;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.BeforeClass;
@@ -11,7 +11,7 @@ import org.slf4j.MDC;
 public class ConsoleAppenderTest {
     @BeforeClass
     public static void beforeClass() {
-        ConfigurationUtils.config("logback-console-appender.xml");
+        LogbackConfig.configFile("logback-console-appender.xml");
     }
 
     @Test

@@ -1,6 +1,6 @@
 package com.github.bingoohuang.logback.more.layout;
 
-import com.github.bingoohuang.logback.more.utils.ConfigurationUtils;
+import com.github.bingoohuang.logback.more.utils.LogbackConfig;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -11,7 +11,7 @@ public class MaskPatternLayoutTest {
 
     @BeforeClass
     public static void beforeClass() {
-        ConfigurationUtils.config("logback-console-mask-layout.xml");
+        LogbackConfig.configFile("logback-console-mask-layout.xml");
     }
 
     @Test

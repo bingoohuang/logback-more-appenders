@@ -8,7 +8,7 @@ import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.naming.InitialContext;
 
-public class WeblogicEnvUtils {
+public class WeblogicEnv {
     @SneakyThrows
     public static String getListenPort() {
         @Cleanup val ctx = new InitialContext();

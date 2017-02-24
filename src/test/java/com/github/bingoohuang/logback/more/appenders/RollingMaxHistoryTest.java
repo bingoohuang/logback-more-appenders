@@ -1,6 +1,6 @@
 package com.github.bingoohuang.logback.more.appenders;
 
-import com.github.bingoohuang.logback.more.utils.ConfigurationUtils;
+import com.github.bingoohuang.logback.more.utils.LogbackConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class RollingMaxHistoryTest {
     @BeforeClass
     public static void beforeClass() {
-        ConfigurationUtils.config("logback-rolling-maxhistory.xml");
+        LogbackConfig.configFile("logback-rolling-maxhistory.xml");
     }
 
     @Test

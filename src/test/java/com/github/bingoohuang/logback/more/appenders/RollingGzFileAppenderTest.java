@@ -1,6 +1,6 @@
 package com.github.bingoohuang.logback.more.appenders;
 
-import com.github.bingoohuang.logback.more.utils.ConfigurationUtils;
+import com.github.bingoohuang.logback.more.utils.LogbackConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import org.junit.Test;
 public class RollingGzFileAppenderTest {
     @BeforeClass
     public static void beforeClass() {
-        ConfigurationUtils.config("logback-rolling-gz-file-appender.xml");
+        LogbackConfig.configFile("logback-rolling-gz-file-appender.xml");
     }
 
     @Test

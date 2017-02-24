@@ -1,6 +1,6 @@
 package com.github.bingoohuang.logback.more.appenders;
 
-import com.github.bingoohuang.logback.more.utils.ConfigurationUtils;
+import com.github.bingoohuang.logback.more.utils.LogbackConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import org.junit.Test;
 public class FileAppenderTest {
     @BeforeClass
     public static void beforeClass() {
-        ConfigurationUtils.config("logback-file-appender.xml");
+        LogbackConfig.configFile("logback-file-appender.xml");
     }
 
     @Test

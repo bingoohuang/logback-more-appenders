@@ -1,6 +1,6 @@
 package com.github.bingoohuang.logback.more;
 
-import com.github.bingoohuang.logback.more.utils.ConfigurationUtils;
+import com.github.bingoohuang.logback.more.utils.LogbackConfig;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.n3r.diamond.client.Miner;
@@ -12,12 +12,12 @@ public class LevelDynamicChangeTest {
 
     @BeforeClass
     public static void beforeClass() {
-        ConfigurationUtils.config("logback-console-appender.xml");
+        LogbackConfig.configFile("logback-console-appender.xml");
         new Miner().getStone("some", "some"); // to startup diamond-client
     }
 
     /**
-     * change diamond config group=diamond.extender,dataId=logger.levels,content=
+     * change diamond configFile group=diamond.extender,dataId=logger.levels,content=
      * org.n3r.diamond.client*=all
      * org.quartz.core.QuartzSchedulerThread=debug
      * org.quartz.core.JobRunShell=debug
