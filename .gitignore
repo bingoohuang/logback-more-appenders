@@ -3,5 +3,6 @@ target
 *.war
 *.class
 .idea
-
+*.log.gz
+.DS_Store
 *.log
