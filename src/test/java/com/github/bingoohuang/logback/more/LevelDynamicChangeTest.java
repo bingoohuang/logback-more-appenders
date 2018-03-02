@@ -33,7 +33,7 @@ public class LevelDynamicChangeTest {
             log.warn("这是我的第一个测试WARN日志");
             log.error("这是我的第一个测试ERROR日志");
 
-            Thread.sleep(5000);
+            Thread.sleep(100);
         }
     }
 }

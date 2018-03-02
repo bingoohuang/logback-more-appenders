@@ -1,7 +1,7 @@
 package ch.qos.logback.classic.sift;
 
+import com.google.common.base.Splitter;
 import lombok.val;
-import org.slf4j.MDC;
 
 import java.util.Map;
 
@@ -14,12 +14,14 @@ public class MultiKeysSiftingJoranConfigurator extends SiftingJoranConfigurator 
     protected void buildInterpreter() {
         super.buildInterpreter();
 
-        Map<String, String> mdcPropertyMap = MDC.getMDCAdapter().getCopyOfContextMap();
-        if (mdcPropertyMap == null) return;
+        val splitter = Splitter.on(',').omitEmptyStrings().trimResults();
+        val keys = splitter.splitToList(key);
+        val vals = splitter.splitToList(value);
 
-        val interpretationContext = interpreter.getInterpretationContext();
-        for (val entry : mdcPropertyMap.entrySet())
-            interpretationContext.addSubstitutionProperty(entry.getKey(), entry.getValue());
+        val context = interpreter.getInterpretationContext();
+        for (int i = 0, ii = keys.size(); i < ii; ++i) {
+            context.addSubstitutionProperty(keys.get(i), vals.get(i));
+        }
     }
 
 }

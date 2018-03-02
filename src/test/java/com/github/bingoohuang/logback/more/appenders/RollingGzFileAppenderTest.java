@@ -24,7 +24,7 @@ public class RollingGzFileAppenderTest {
             log.info("这是我的第一个测试INFO日志{}", i);
             log.warn("这是我的第一个测试WARN日志{}", i);
             log.error("这是我的第一个测试ERROR日志{}", i);
-            Thread.sleep(10000);
+            Thread.sleep(100);
         }
 
         // do someting

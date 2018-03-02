@@ -13,19 +13,19 @@ public class MultiKeysMDCBasedDiscriminator extends MDCBasedDiscriminator {
 
     @Override
     public String getDiscriminatingValue(ILoggingEvent event) {
-        val splitter = Splitter.on(getSplitter()).omitEmptyStrings().trimResults();
+        val split = Splitter.on(splitter).omitEmptyStrings().trimResults();
         val mdcMap = event.getMDCPropertyMap();
         if (mdcMap == null) return getDefaultValue();
 
-        val keys = splitter.split(getKey());
+        val keys = split.split(getKey());
         val values = new StringBuilder();
         for (String key : keys) {
-            String value = mdcMap.get(key);
-            String str = value == null ? getDefaultValue() : value;
+            val value = mdcMap.get(key);
+            val str = value == null ? getDefaultValue() : value;
             values.append(str).append(getSplitter());
         }
 
-        return StringUtils.removeEnd(values.toString(), getSplitter());
+        return StringUtils.removeEnd(values.toString(), splitter);
 
     }
 }

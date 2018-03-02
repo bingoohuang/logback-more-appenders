@@ -7,10 +7,10 @@ import org.junit.Test;
 import org.slf4j.MDC;
 
 @Slf4j
-public class MultiKeysSiftAppenderTest {
+public class MultiKeysSiftSilentAppenderTest {
     @BeforeClass
     public static void beforeClass() {
-        LogbackConfig.configFile("logback-multikeys-sift-appender.xml");
+        LogbackConfig.configFile("logback-multikeys-sift-silent-appender.xml");
     }
 
     @Test
@@ -18,6 +18,7 @@ public class MultiKeysSiftAppenderTest {
         Thread thread1 = new Thread() {
             @Override
             public void run() {
+                MDC.put("userType", "Prepay");
                 MDC.put("userId", "bingoo");
                 log.trace("trace1");
                 log.debug("debug1");
@@ -31,6 +32,7 @@ public class MultiKeysSiftAppenderTest {
             @Override
             public void run() {
                 MDC.put("userType", "Postpay");
+                MDC.put("userId", "huang");
                 log.trace("trace2");
                 log.debug("debug2");
                 log.info("info2");
@@ -46,4 +48,20 @@ public class MultiKeysSiftAppenderTest {
         thread2.join();
     }
 
+    @Test
+    public void testSilent() throws InterruptedException {
+        Thread thread1 = new Thread() {
+            @Override
+            public void run() {
+                log.trace("trace1");
+                log.debug("debug1");
+                log.info("info1");
+                log.warn("warn1");
+                log.error("error1");
+            }
+        };
+
+        thread1.start();
+        thread1.join();
+    }
 }

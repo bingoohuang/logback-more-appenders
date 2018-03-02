@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
     <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <filter class="com.github.bingoohuang.logback.more.filter.MdcExistsFilter">
+            <key>userId</key>
+        </filter>
         <!-- in the absence of the class attribute, it is assumed that the
              desired discriminator type is
              ch.qos.logback.classic.sift.MDCBasedDiscriminator -->
